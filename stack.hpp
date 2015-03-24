@@ -67,6 +67,7 @@ Element Stack<Element>::pop() {
     Element value = m_first->value;
     list_element<Element> *tmp = m_first;
     m_first = m_first->next;
+    std::cout << "Popped: " << value << std::endl;
     delete tmp;
     return value;
 }
