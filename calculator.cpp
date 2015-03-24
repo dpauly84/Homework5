@@ -5,13 +5,26 @@
 // Last Changed: March 24, 2015
 
 #include "calculator.hpp"
-#include "utils.hpp"
+#include "stack.hpp"
 #include <iostream>
 
 using namespace std;
 
 int main() {
     cout << "Hello World" << endl;
-    double n = get_double("enter a double");
-    cout << n << endl;
-}
+    Stack<double> stack;
+    stack.push(20);
+    stack.push(40);
+//    stack.push(3.24);
+
+    cout << stack.pop() << endl;
+    cout << stack.pop() << endl;
+    cout << stack.pop() << endl;
+
+
+
+
+
+
+
+} // End Main
