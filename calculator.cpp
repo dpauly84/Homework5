@@ -8,7 +8,8 @@
 #include "stack.hpp"
 #include <iostream>
 #include <sstream>
-
+#include <bits/algorithmfwd.h>
+#include <string>
 template<class Element>
 void print_stack(Stack<Element> e);
 
@@ -18,11 +19,6 @@ int main() {
     Stack<double> doubleStack;
 
     string infix = "(( 3-(8   /    5 ))*    2)";
-    string myString = "a ";
-    append_postfix('b', myString);
-    append_postfix('c', myString);
-    cout <<myString << endl;
-
 
 
 //    Start: infix contains an expression
