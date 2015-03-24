@@ -67,7 +67,7 @@ Element Stack<Element>::pop() {
     Element value = m_first->value;
     list_element<Element> *tmp = m_first;
     m_first = m_first->next;
-    std::cout << "Popped: " << value << std::endl;
+//    std::cout << "Popped: " << value << std::endl;
     delete tmp;
     return value;
 }
@@ -77,7 +77,7 @@ template<class Element>
 void Stack<Element>::push(Element e) {
     list_element<Element>* newElement = new list_element<Element>;
     newElement->value = e;
-    std::cout << "Push Value: " << newElement->value << std::endl;
+//    std::cout << "Push Value: " << newElement->value << std::endl;
     if(m_first == NULL) {
         m_first = newElement;
         newElement->next = NULL;

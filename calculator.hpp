@@ -7,4 +7,9 @@
 #ifndef _HOMEWORK5_CALCULATOR_HPP_
 #define _HOMEWORK5_CALCULATOR_HPP_
 
+#include <string>
+
+std::string getString(std::string &infix);
+void append_postfix(char c, std::string &postfix);
+
 #endif //_HOMEWORK5_CALCULATOR_H_
