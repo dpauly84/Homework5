@@ -10,28 +10,30 @@
 #include <sstream>
 #include <bits/algorithmfwd.h>
 #include <string>
+
 template<class Element>
 void print_stack(Stack<Element> e);
 
 using namespace std;
 
 int main() {
-    Stack<double> doubleStack;
 
-    string infix = "(( 3-(8   /    5 ))*    2)";
+    string infix = "(3+(4*2)) /2";
+    string postfix;
 
+    cout << "Enter an expression in infix notation: ";
+    cin >> infix;
+    postfix = infix_to_postfix(infix);
+    cout << "Your expression converted to postfix is: " << postfix << endl;
+    cout << endl;
 
-//    Start: infix contains an expression
-//    postfix is empty
-//    stack is empty
-    string postfix = getString(infix);
+    cout << "the result of evaluating your expression is: "
+         << compute_postfix(postfix);
 
-    cout << "infix: " << infix << endl;
-    cout << "postfix: " << postfix << endl;
+    return 0;
+} // End main
 
-}
-
-string getString(string &infix) {
+string infix_to_postfix(string &infix) {
     string postfix = "";
     Stack<char> charStack;
     char symbol;
@@ -47,7 +49,6 @@ string getString(string &infix) {
                 stack_sym = charStack.pop();
             }
         }
-//        ...
 
         else if (!isalpha(symbol) && !isdigit(symbol)) {
             if (charStack.is_empty()) charStack.push(symbol);
@@ -66,7 +67,7 @@ string getString(string &infix) {
         {
             append_postfix(symbol, postfix);
         }
-    } /* end for each symbol */
+    } // end for each symbol
 
     while (!charStack.is_empty()) {
         stack_sym = charStack.pop();
@@ -90,5 +91,47 @@ void append_postfix(char c, string &postfix) {
     postfix += " ";
 }
 
+double compute_postfix(string &postfix) {
+    Stack<double> doubleStack; // Initialize a stack of doubles
+    double num1, num2;
+    char symbol;
+    int i = 0;
+    do {
+        symbol = postfix[i];
+        if (symbol == ' ') {
+            ++i;
+            continue;
+        }
+        else if (isdigit(symbol)) {
+            doubleStack.push(char_to_double(symbol));
+        }
+        else {
+            num2 = doubleStack.pop();
+            num1 = doubleStack.pop();
 
+            switch (symbol) {
+                case '+':
+                    doubleStack.push(num1 + num2);
+                    break;
+                case '-':
+                    doubleStack.push(num1 - num2);
+                    break;
+                case '*':
+                    doubleStack.push(num1 * num2);
+                    break;
+                case '/':
+                    doubleStack.push(num1 / num2);
+                    break;
+            }
+        }
+        ++i;
+    } while (i < postfix.length());
+
+    return doubleStack.pop();
+
+}
+
+double char_to_double(char c) {
+    return static_cast<double>(c - '0');
+}
 

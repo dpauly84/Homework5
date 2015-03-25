@@ -9,7 +9,9 @@
 
 #include <string>
 
-std::string getString(std::string &infix);
+std::string infix_to_postfix(std::string &infix);
 void append_postfix(char c, std::string &postfix);
+double compute_postfix(std::string & postfix);
+double char_to_double(char c);
 
 #endif //_HOMEWORK5_CALCULATOR_H_
