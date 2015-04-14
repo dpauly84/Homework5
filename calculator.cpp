@@ -5,7 +5,7 @@
 // Last Changed: April 14, 2015
 
 // Description: This program implements uses stacks to convert infix notation to
-//     postfix notation and calculate the result.
+// postfix notation and calculates the result.
 
 #include "calculator.hpp"
 #include "stack.hpp"
