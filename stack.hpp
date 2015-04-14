@@ -27,10 +27,10 @@ public:
     Element pop();
     void push(Element e);
     bool is_empty();
-    list_element<Element> *m_first;
+
 
 private:
-
+    list_element<Element> *m_last;
 };
 
 // Content that would normally go in the source file: Class implementation
@@ -39,16 +39,16 @@ private:
 // constructor
 template<class Element>
 Stack<Element>::Stack() {
-    m_first = NULL;
+    m_last = NULL;
 }
 
 // destructor
 template<class Element>
 Stack<Element>::~Stack() {
     list_element<Element> *tmp;
-    while(m_first != NULL) {
-        tmp = m_first;
-        m_first = m_first->next;
+    while(m_last != NULL) {
+        tmp = m_last;
+        m_last = m_last->next;
         delete tmp;
     }
 }
@@ -60,7 +60,7 @@ Element Stack<Element>::top() {
         std::cout << "Cannot retrieve item off empty stack! Goodbye" << std::endl;
         exit(EXIT_FAILURE);
     }
-    return m_first->value;
+    return m_last->value;
 }
 
 // returns what was the top element of the stack, and also removes this element from the stack
@@ -70,9 +70,9 @@ Element Stack<Element>::pop() {
         std::cout << "Cannot pop item off empty stack! Goodbye" << std::endl;
         exit(EXIT_FAILURE);
     }
-    Element value = m_first->value;
-    list_element<Element> *tmp = m_first;
-    m_first = m_first->next;
+    Element value = m_last->value;
+    list_element<Element> *tmp = m_last;
+    m_last = m_last->next;
     delete tmp;
     return value;
 }
@@ -82,19 +82,19 @@ template<class Element>
 void Stack<Element>::push(Element e) {
     list_element<Element>* newElement = new list_element<Element>;
     newElement->value = e;
-    if(m_first == NULL) {
-        m_first = newElement;
+    if(m_last == NULL) {
+        m_last = newElement;
         newElement->next = NULL;
     } else {
-        newElement->next = m_first;
-        m_first = newElement;
+        newElement->next = m_last;
+        m_last = newElement;
     }
 }
 
 // returns true if stack is empty, or false otherwise
 template<class Element>
 bool Stack<Element>::is_empty() {
-    return m_first == NULL;
+    return m_last == NULL;
 }
 
 #endif //_HOMEWORK5_STACK_H_
