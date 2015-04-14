@@ -94,8 +94,7 @@ void Stack<Element>::push(Element e) {
 // returns true if stack is empty, or false otherwise
 template<class Element>
 bool Stack<Element>::is_empty() {
-    if(m_first == NULL) return true;
-    else return false;
+    return m_first == NULL;
 }
 
 #endif //_HOMEWORK5_STACK_H_
