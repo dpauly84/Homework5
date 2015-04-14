@@ -4,38 +4,42 @@
 // Assignment Number: 5
 // Last Changed: April 14, 2015
 
+// Description: This program implements uses stacks to convert infix notation to
+//     postfix notation and calculate the result.
+
 #include "calculator.hpp"
 #include "stack.hpp"
+#include <cstdlib> // Provides EXIT_SUCCESS
 
 using namespace std;
-
-template<class Element>
-void print_stack(Stack <Element> e);
 
 int main() {
 
     string infix, postfix;
-    infix = "(3 - (8 / 5)) * 2";
 
     cout << "Enter an expression in infix notation: ";
-//    getline(cin, infix);
+    getline(cin, infix);
 
     postfix = infix_to_postfix(infix);
     cout << "Your expression converted to postfix is: " << postfix << endl;
     cout << endl;
 
-    cout << "the result of evaluating your expression is: "
+    cout << "The result of evaluating your expression is: "
     << compute_postfix(postfix) << endl;
 
-    return 0;
+    return EXIT_SUCCESS;
+
 } // End main
 
+// Converts and infix  notation string to postfix
+// Infix string must be fully parenthesized
+// All operands in infix string must be single digit numbers
 string infix_to_postfix(string & infix) {
     string postfix = "";
     Stack<char> charStack;
     char symbol; // character from string infix
     char stack_sym; // character from top of stack
-    for (int i = 0; i < infix.length(); ++i) { // iterate through characters in infix string
+    for (unsigned int i = 0; i < infix.length(); ++i) { // iterate through characters in infix string
         symbol = infix[i];
         if (symbol == ' ') continue; // ignore spaces
         if (symbol == '(') charStack.push(symbol);
@@ -79,26 +83,18 @@ string infix_to_postfix(string & infix) {
     return postfix;
 }
 
-template<class Element>
-void print_stack(Stack <Element> e) {
-    list_element <Element> *ptr = new list_element <Element>;
-    ptr = e.m_first;
-    while (ptr != NULL) {
-        cout << ptr->value << endl;
-        ptr = ptr->next;
-    }
-}
-
+// Appends char c to string postfix and adds a space between characters
 void append_postfix(char c, string &postfix) {
     postfix += c;
     postfix += " ";
 }
 
+// computes postfix notation and returns the value as type double
 double compute_postfix(string & postfix) {
     Stack<double> doubleStack; // Initialize a stack of doubles
     double num1, num2;
     char symbol;
-    int i = 0;
+    unsigned int i = 0;
     do {
         symbol = postfix[i];
         if (symbol == ' ') {
@@ -134,6 +130,7 @@ double compute_postfix(string & postfix) {
 
 }
 
+// converts a char to a double and returns it
 double char_to_double(char c) {
     return static_cast<double>(c - '0');
 }

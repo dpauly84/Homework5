@@ -45,9 +45,15 @@ Stack<Element>::Stack() {
 // destructor
 template<class Element>
 Stack<Element>::~Stack() {
+    list_element<Element> *tmp;
+    while(m_first != NULL) {
+        tmp = m_first;
+        m_first = m_first->next;
+        delete tmp;
+    }
 }
 
-// returns the top element of the stack, but doesn’t change the stack
+// returns the top element of the stack, but does not change the stack
 template<class Element>
 Element Stack<Element>::top() {
     if(is_empty()){ // Ensure stack is not empty
