@@ -1,8 +1,8 @@
 // File Name: calculator.cpp
 // Author: Derek Pauly
 // Student ID: s829f376
-// Assignment Number: 4
-// Last Changed: March 24, 2015
+// Assignment Number: 5
+// Last Changed: April 14, 2015
 
 #include "calculator.hpp"
 #include "stack.hpp"
