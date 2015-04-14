@@ -15,7 +15,7 @@ void print_stack(Stack <Element> e);
 int main() {
 
     string infix, postfix;
-    infix = "(4 - 2 + 6)";
+    infix = "(3 - (8 / 5)) * 2";
 
     cout << "Enter an expression in infix notation: ";
 //    getline(cin, infix);
@@ -25,7 +25,7 @@ int main() {
     cout << endl;
 
     cout << "the result of evaluating your expression is: "
-    << compute_postfix(postfix);
+    << compute_postfix(postfix) << endl;
 
     return 0;
 } // End main
